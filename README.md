@@ -108,5 +108,3 @@ Key supporting literature from peer-reviewed journals and IEEE/Elsevier sources 
 
 ---
 
-## Repository Structure
-
