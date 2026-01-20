@@ -2,11 +2,11 @@
 
 # Pneumonia Detection System
 
-[\![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
-[\![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://tensorflow.org)
-[\![ESP32](https://img.shields.io/badge/Hardware-ESP32-red.svg)](https://www.espressif.com/en/products/socs/esp32)
-[\![Accuracy](https://img.shields.io/badge/Accuracy-90.9%25-brightgreen.svg)](/)
-[\![Capstone](https://img.shields.io/badge/VIT-Capstone%20Project-purple.svg)](/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://tensorflow.org)
+[![ESP32](https://img.shields.io/badge/Hardware-ESP32-red.svg)](https://www.espressif.com/en/products/socs/esp32)
+[![Accuracy](https://img.shields.io/badge/Accuracy-90.9%25-brightgreen.svg)](/)
+[![Capstone](https://img.shields.io/badge/VIT-Capstone%20Project-purple.svg)](/)
 
 ### Deep Learning + IoT-Based Hybrid Diagnostic System
 
