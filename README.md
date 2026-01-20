@@ -125,7 +125,7 @@ Pneumonia is a severe respiratory infection affecting millions worldwide. This c
 | Name | Role |
 |------|------|
 | **Rupam Mal** | ML Engineer |
-| **Harsh Kumar** | Integration Lead |
+| **Harsh Kumar** | Integration and Documentation |
 | **Debtonu Bose** | Hardware Engineer |
 
 **Guide**: Dr. Prachi Sharma | **Capstone Project 2024-2025**
