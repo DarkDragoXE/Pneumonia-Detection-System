@@ -1,110 +1,153 @@
-# Pneumonia Detection System using Deep Learning and VOC Sensor Integration
+<div align="center">
 
-This repository contains the design and implementation of a hybrid pneumonia detection system that combines **deep learning–based image classification** with **real-time breath analysis using VOC sensors**. The project demonstrates an interdisciplinary integration of **AI, IoT, and biomedical engineering** for early, non-invasive pneumonia detection.
+# Pneumonia Detection System
+
+[\![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[\![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://tensorflow.org)
+[\![ESP32](https://img.shields.io/badge/Hardware-ESP32-red.svg)](https://www.espressif.com/en/products/socs/esp32)
+[\![Accuracy](https://img.shields.io/badge/Accuracy-90.9%25-brightgreen.svg)](/)
+[\![Capstone](https://img.shields.io/badge/VIT-Capstone%20Project-purple.svg)](/)
+
+### Deep Learning + IoT-Based Hybrid Diagnostic System
+
+**A non-invasive, AI-powered pneumonia detection system combining chest X-ray analysis with real-time breath biomarker monitoring**
+
+[Overview](#overview) | [Features](#key-features) | [Results](#results) | [Hardware](#hardware-design) | [Team](#team)
+
+</div>
 
 ---
 
 ## Overview
 
-Pneumonia is a severe respiratory infection that requires rapid diagnosis for effective treatment. Traditional methods like X-rays and blood tests are expensive, time-consuming, and often expose patients to radiation.  
-This project introduces a **dual-diagnostic approach**:
-1. **AI-based detection** from chest X-rays using Convolutional Neural Networks (CNNs).  
-2. **Sensor-based detection** using exhaled breath analysis to identify elevated levels of biomarkers such as **CO₂**, **NO**, and **volatile organic compounds (VOCs)**.
+Pneumonia is a severe respiratory infection affecting millions worldwide. This capstone project introduces a **dual-diagnostic approach**:
+
+| Approach | Method | Technology |
+|----------|--------|------------|
+| **AI Detection** | Chest X-ray Classification | CNN (MobileNetV2, VGG16) |
+| **Breath Analysis** | Exhaled Biomarker Detection | VOC/NO2/CO2 Sensors |
 
 ---
 
-## Objectives
+## Key Features
 
-- Develop and evaluate deep learning models (VGG16, MobileNetV2, DenseNet121, InceptionV3) for pneumonia detection using chest X-rays.
-- Integrate a low-cost VOC sensing device for non-invasive detection via breath analysis.
-- Create a hybrid diagnostic pipeline combining AI and sensor-based inference.
-- Ensure compatibility with embedded hardware (ESP32) for real-time monitoring and wireless data transfer.
-- Promote accessibility, sustainability, and affordability in medical diagnostics.
+- **High Accuracy**: MobileNetV2 achieves **90.9% accuracy**
+- **Non-Invasive**: Breath analysis eliminates radiation exposure
+- **Portable**: ESP32-based point-of-care diagnostics
+- **Low-Cost**: Affordable for developing regions
+- **Real-Time**: Wireless data transfer
 
 ---
 
 ## System Architecture
 
-1. **Data Input**  
-   - Dataset: Pediatric chest X-ray dataset (5,863 images) from Mendeley Data.  
-   - Categories: Normal (1,341) and Pneumonia (4,522).  
-
-2. **Deep Learning Pipeline**  
-   - Frameworks: TensorFlow, Keras, OpenCV.  
-   - Models trained with Adam optimizer and categorical cross-entropy loss.  
-   - Regularization using dropout, batch normalization, and learning-rate scheduling.  
-   - **MobileNetV2 achieved the best accuracy of 90.9%**, followed by VGG16 (90.2%).
-
-3. **Hardware Integration**  
-   - Microcontroller: ESP32  
-   - Sensors:  
-     - MiCS 5524 – VOC detection  
-     - MiCS 2714 – NO₂ detection  
-     - SCD40 D R2 – CO₂ detection  
-   - Power: Dual 3.3V lithium-ion batteries (7.4V total, regulated to 5V via buck converter).  
-   - Communication: Wi-Fi-enabled data transfer for remote diagnostics.
-
-4. **PCB Design**  
-   - Designed using KiCad for compact, low-power operation.  
-   - Includes filters, voltage dividers, and I²C communication for sensor interfacing.
+<div align="center">
+<img src="images/system_architecture.jpeg" alt="System Architecture" width="800"/>
+</div>
 
 ---
 
-## Tools and Parameters
+## Deep Learning Models
 
-| Category | Tools/Parameters |
-|-----------|------------------|
-| **Software** | Python, TensorFlow, Keras, OpenCV, Matplotlib, Seaborn |
-| **Hardware** | ESP32 microcontroller, VOC, NO₂, and CO₂ sensors |
-| **Simulation** | HFSS / KiCad (hardware), Google Colab (software) |
-| **Training** | Batch size: 32, Epochs: 50, Optimizer: Adam, Loss: Categorical Cross-Entropy |
+| Model | Accuracy | Best For |
+|-------|----------|----------|
+| **MobileNetV2** | **90.9%** | Embedded deployment |
+| VGG16 | 90.2% | Baseline/Server |
+| DenseNet121 | 88.0% | Balanced |
+| InceptionV3 | 86.2% | High accuracy needs |
+
+### Model Comparison
+
+<div align="center">
+<img src="images/model_comparison.png" alt="Model Comparison" width="700"/>
+</div>
 
 ---
 
 ## Results
 
-| Model | Accuracy (%) | Suitability |
-|--------|---------------|-------------|
-| MobileNetV2 | 90.9 | Best for embedded deployment |
-| VGG16 | 90.2 | Strong baseline model |
-| DenseNet121 | 88.0 | Efficient, but heavier |
-| InceptionV3 | 86.2 | High accuracy, more resource-intensive |
+### Training Performance
 
-The integrated VOC detection device successfully identifies spikes in exhaled compounds corresponding to respiratory distress. Combined with CNN-based image inference, the hybrid system provides reliable, real-time detection without invasive procedures.
+<div align="center">
+<table>
+<tr>
+<td><img src="images/training_results_1.png" width="400"/></td>
+<td><img src="images/training_results_2.png" width="400"/></td>
+</tr>
+</table>
+</div>
 
----
+### Confusion Matrices
 
-## Social and Environmental Impact
-
-- **Healthcare Accessibility:** Enables portable, low-cost diagnosis in remote or underserved areas.  
-- **Environmental Benefit:** Reduces reliance on radiological equipment, minimizing radiation exposure.  
-- **Sustainability:** Low-power sensors and embedded systems contribute to green medical technology.  
-- **Educational Value:** Encourages interdisciplinary research in AI, biomedical engineering, and IoT.
-
----
-
-## Alignment with UN Sustainable Development Goals
-
-- **SDG 3:** Good Health and Well-being  
-- **SDG 9:** Industry, Innovation, and Infrastructure  
-- **SDG 10:** Reduced Inequalities  
-- **SDG 4:** Quality Education (Indirect)
+<div align="center">
+<table>
+<tr>
+<td><img src="images/confusion_matrix_1.png" width="400"/></td>
+<td><img src="images/confusion_matrix_2.png" width="400"/></td>
+</tr>
+</table>
+</div>
 
 ---
 
-## Contributors
+## Hardware Design
 
-- **Rupam Mal** – Deep Learning and Software Development  
-- **Harsh Kumar** – Cross-domain Documentation and Integration  
-- **Debtonu Bose** – Hardware Design, Circuit Development, and Sensor Integration  
-- **Guide:** Dr. Prachi Sharma  
+| Component | Model | Function |
+|-----------|-------|----------|
+| **MCU** | ESP32 | Processing + Wi-Fi |
+| **VOC Sensor** | MiCS 5524 | VOC detection |
+| **NO2 Sensor** | MiCS 2714 | NO2 measurement |
+| **CO2 Sensor** | SCD40 | CO2 monitoring |
+
+### Circuit Schematics
+
+<div align="center">
+<table>
+<tr>
+<td><img src="hardware/schematics/circuit_schematic.jpeg" width="400"/></td>
+<td><img src="hardware/schematics/power_distribution.jpeg" width="400"/></td>
+</tr>
+</table>
+</div>
+
+### Hardware Prototype
+
+<div align="center">
+<img src="images/hardware_prototype.png" width="600"/>
+</div>
 
 ---
 
-## References
+## Documentation
 
-Key supporting literature from peer-reviewed journals and IEEE/Elsevier sources on FPGA-based biomedical imaging, VOC sensing, and deep learning optimization for medical diagnostics.  
-(Full list available in the project documentation folder.)
+**[Final Presentation (PDF)](docs/presentation/Final%20Review%20PPT.pdf)**
 
 ---
 
+## Team
+
+**VIT Vellore** - School of Electronics Engineering (SENSE)
+
+| Name | Role |
+|------|------|
+| **Rupam Mal** | ML Engineer |
+| **Harsh Kumar** | Integration Lead |
+| **Debtonu Bose** | Hardware Engineer |
+
+**Guide**: Dr. Prachi Sharma | **Capstone Project 2024-2025**
+
+---
+
+## Future Work
+
+- [ ] Deploy on ESP32 with TensorFlow Lite
+- [ ] Develop mobile app
+- [ ] Clinical validation
+
+---
+
+<div align="center">
+
+**VIT Vellore | 2024-2025**
+
+</div>
