@@ -110,12 +110,6 @@ Pneumonia is a severe respiratory infection affecting millions worldwide. This c
 </table>
 </div>
 
-### Hardware Prototype
-
-<div align="center">
-<img src="images/hardware_prototype.png" width="600"/>
-</div>
-
 ---
 
 ## Documentation
