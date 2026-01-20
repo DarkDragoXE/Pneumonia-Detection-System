@@ -12,9 +12,31 @@
 
 **A non-invasive, AI-powered pneumonia detection system combining chest X-ray analysis with real-time breath biomarker monitoring**
 
-[Overview](#overview) | [Features](#key-features) | [Results](#results) | [Hardware](#hardware-design) | [Team](#team)
+[Overview](#overview) | [Features](#key-features) | [Results](#results) | [Hardware](#hardware-design) | [Team](#team) | [Author](#author)
 
 </div>
+
+---
+
+## About
+
+This is the **B.Tech Capstone Project** developed at VIT Vellore from December 2024 to May 2025. The project demonstrates a novel hybrid approach combining deep learning for chest X-ray analysis with IoT-based breath biomarker monitoring for non-invasive pneumonia detection.
+
+| | |
+|---|---|
+| **Institution** | VIT Vellore |
+| **Duration** | December 2024 - May 2025 |
+| **Team Size** | 3 |
+| **Role** | Team Lead |
+| **Tools** | KiCad, VSCode, TensorFlow |
+
+### Key Achievements
+
+- Developed **ESP32-based portable device** integrating VOC, NO2, and CO2 sensors
+- Designed **power circuitry** using dual 3.3V lithium-ion batteries with buck converter
+- Deployed **MobileNetV2 CNN model** (90.9% accuracy) on embedded hardware
+- Created affordable alternative to traditional radiological methods
+- Non-invasive pneumonia detection through breath biomarker analysis
 
 ---
 
@@ -98,6 +120,7 @@ Pneumonia is a severe respiratory infection affecting millions worldwide. This c
 | **VOC Sensor** | MiCS 5524 | VOC detection |
 | **NO2 Sensor** | MiCS 2714 | NO2 measurement |
 | **CO2 Sensor** | SCD40 | CO2 monitoring |
+| **Power** | Dual 3.3V Li-ion + Buck Converter | Stable sensor operation |
 
 ### Circuit Schematics
 
@@ -124,11 +147,22 @@ Pneumonia is a severe respiratory infection affecting millions worldwide. This c
 
 | Name | Role |
 |------|------|
+| **Debtonu Bose** | Team Lead, Hardware Engineer |
 | **Rupam Mal** | ML Engineer |
 | **Harsh Kumar** | Integration and Documentation |
-| **Debtonu Bose** | Hardware Engineer |
 
 **Guide**: Dr. Prachi Sharma | **Capstone Project 2024-2025**
+
+---
+
+## Author
+
+**Debtonu Bose**
+B.Tech Electronics and Communication Engineering
+Vellore Institute of Technology (2021-2025)
+
+[![GitHub](https://img.shields.io/badge/GitHub-DarkDragoXE-black?logo=github)](https://github.com/DarkDragoXE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-debtonu--bose-blue?logo=linkedin)](https://linkedin.com/in/debtonu-bose)
 
 ---
 
@@ -137,11 +171,12 @@ Pneumonia is a severe respiratory infection affecting millions worldwide. This c
 - [ ] Deploy on ESP32 with TensorFlow Lite
 - [ ] Develop mobile app
 - [ ] Clinical validation
+- [ ] Bacterial vs viral classification
 
 ---
 
 <div align="center">
 
-**VIT Vellore | 2024-2025**
+**VIT Vellore | Capstone Project | 2024-2025**
 
 </div>
