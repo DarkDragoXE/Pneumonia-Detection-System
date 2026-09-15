@@ -5,22 +5,22 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://tensorflow.org)
 [![ESP32](https://img.shields.io/badge/Hardware-ESP32-red.svg)](https://www.espressif.com/en/products/socs/esp32)
-[![Accuracy](https://img.shields.io/badge/Accuracy-90.9%25-brightgreen.svg)](/)
+[![Accuracy](https://img.shields.io/badge/CNN%20Test%20Accuracy-90.9%25-brightgreen.svg)](/)
 [![Capstone](https://img.shields.io/badge/VIT-Capstone%20Project-purple.svg)](/)
 
-### Deep Learning + IoT-Based Hybrid Diagnostic System
+### CNN-based Chest X-ray Classification + ESP32 Breath-Sensor Prototype
 
-**A non-invasive, AI-powered pneumonia detection system combining chest X-ray analysis with real-time breath biomarker monitoring**
-
-[Overview](#overview) | [Features](#key-features) | [Results](#results) | [Hardware](#hardware-design) | [Team](#team) | [Author](#author)
+[Overview](#overview) | [Models](#deep-learning-models) | [Results](#results) | [Hardware](#hardware-design) | [Team](#team)
 
 </div>
 
 ---
 
+> **Disclaimer**: This is an academic B.Tech capstone project built for learning purposes. It is **not** a certified medical device and has **not** been clinically validated. Nothing here should be used to make an actual diagnostic decision.
+
 ## About
 
-This is the **B.Tech Capstone Project** developed at VIT Vellore from December 2024 to May 2025. The project demonstrates a novel hybrid approach combining deep learning for chest X-ray analysis with IoT-based breath biomarker monitoring for non-invasive pneumonia detection.
+B.Tech Capstone Project developed at VIT Vellore, December 2024 – May 2025. The project explores two independent, complementary approaches to non-invasive pneumonia screening: a CNN image classifier for chest X-rays, and a breath-biomarker sensing prototype built around an ESP32.
 
 | | |
 |---|---|
@@ -28,86 +28,70 @@ This is the **B.Tech Capstone Project** developed at VIT Vellore from December 2
 | **Duration** | December 2024 - May 2025 |
 | **Team Size** | 3 |
 | **Role** | Team Lead |
-| **Tools** | KiCad, VSCode, TensorFlow |
+| **Tools** | KiCad, TensorFlow/Keras, VSCode |
 
-### Key Achievements
+### What was built
 
-- Developed **ESP32-based portable device** integrating VOC, NO2, and CO2 sensors
-- Designed **power circuitry** using dual 3.3V lithium-ion batteries with buck converter
-- Deployed **MobileNetV2 CNN model** (90.9% accuracy) on embedded hardware
-- Created affordable alternative to traditional radiological methods
-- Non-invasive pneumonia detection through breath biomarker analysis
+- Trained and evaluated four CNN architectures (VGG16, MobileNetV2, DenseNet121, InceptionV3) via transfer learning on a chest X-ray dataset of 5,863 labeled images (Normal / Pneumonia). Best result: **MobileNetV2 at 90.9% test accuracy**.
+- Designed and assembled an ESP32-based breath-analysis prototype with VOC (MiCS-5524), NO2 (MiCS-2714), and CO2 (SCD40) sensors.
+- Designed the power distribution circuit (dual 3.3V Li-ion cells with buck/LDO regulation) in KiCad.
+- Breath-biomarker readings are currently compared against fixed thresholds. Running the trained CNN on-device and combining both signals into a single live prediction is listed under [Future Work](#future-work) — it was not completed in this phase of the project.
 
 ---
 
 ## Overview
 
-Pneumonia is a severe respiratory infection affecting millions worldwide. This capstone project introduces a **dual-diagnostic approach**:
+| Approach | Method | Status |
+|----------|--------|--------|
+| **X-ray Classification** | CNN (MobileNetV2 best, also VGG16/DenseNet121/InceptionV3) | Trained and evaluated offline; not yet deployed to the ESP32 |
+| **Breath Analysis** | VOC / NO2 / CO2 sensors on ESP32 | Hardware prototype built; readings evaluated against fixed thresholds (no ML integration yet) |
 
-| Approach | Method | Technology |
-|----------|--------|------------|
-| **AI Detection** | Chest X-ray Classification | CNN (MobileNetV2, VGG16) |
-| **Breath Analysis** | Exhaled Biomarker Detection | VOC/NO2/CO2 Sensors |
-
----
-
-## Key Features
-
-- **High Accuracy**: MobileNetV2 achieves **90.9% accuracy**
-- **Non-Invasive**: Breath analysis eliminates radiation exposure
-- **Portable**: ESP32-based point-of-care diagnostics
-- **Low-Cost**: Affordable for developing regions
-- **Real-Time**: Wireless data transfer
+The two approaches were developed and evaluated separately. Full integration into a single wearable device with live, ML-driven breath classification is future work, not a finished system.
 
 ---
 
-## System Architecture
+## Development Workflow
 
 <div align="center">
-<img src="images/system_architecture.jpeg" alt="System Architecture" width="800"/>
+<table>
+<tr>
+<td align="center"><img src="images/system_architecture.jpeg" width="420"/><br/><sub>CNN model development pipeline</sub></td>
+<td align="center"><img src="images/model_comparison.png" width="420"/><br/><sub>Breath-sensor hardware development pipeline</sub></td>
+</tr>
+</table>
 </div>
 
 ---
 
 ## Deep Learning Models
 
-| Model | Accuracy | Best For |
-|-------|----------|----------|
-| **MobileNetV2** | **90.9%** | Embedded deployment |
-| VGG16 | 90.2% | Baseline/Server |
-| DenseNet121 | 88.0% | Balanced |
-| InceptionV3 | 86.2% | High accuracy needs |
+Four pretrained CNN backbones were fine-tuned with transfer learning (Adam optimizer, categorical cross-entropy loss, batch size 48, early stopping) and compared on test accuracy:
 
-### Model Comparison
+| Model | Test Accuracy |
+|-------|----------|
+| **MobileNetV2** | **90.9%** |
+| VGG16 | 90.2% |
+| DenseNet121 | 88.0% |
+| InceptionV3 | 86.2% |
 
-<div align="center">
-<img src="images/model_comparison.png" alt="Model Comparison" width="700"/>
-</div>
+These numbers come from the project's own evaluation results (see chart below); no other performance metrics (precision/recall/F1, external test sets, etc.) are recorded in this repository.
 
 ---
 
 ## Results
 
-### Training Performance
+### Model Accuracy Comparison
 
 <div align="center">
-<table>
-<tr>
-<td><img src="images/training_results_1.png" width="400"/></td>
-<td><img src="images/training_results_2.png" width="400"/></td>
-</tr>
-</table>
+<img src="images/training_results_2.png" width="500"/>
 </div>
 
-### Confusion Matrices
+### Sample Predictions
+
+Example outputs from the trained MobileNetV2 model on test images, with predicted label and confidence:
 
 <div align="center">
-<table>
-<tr>
-<td><img src="images/confusion_matrix_1.png" width="400"/></td>
-<td><img src="images/confusion_matrix_2.png" width="400"/></td>
-</tr>
-</table>
+<img src="images/training_results_1.png" width="700"/>
 </div>
 
 ---
@@ -116,13 +100,13 @@ Pneumonia is a severe respiratory infection affecting millions worldwide. This c
 
 | Component | Model | Function |
 |-----------|-------|----------|
-| **MCU** | ESP32 | Processing + Wi-Fi |
-| **VOC Sensor** | MiCS 5524 | VOC detection |
-| **NO2 Sensor** | MiCS 2714 | NO2 measurement |
+| **MCU** | ESP32 | Sensor readout + Wi-Fi |
+| **VOC Sensor** | MiCS-5524 | VOC detection |
+| **NO2 Sensor** | MiCS-2714 | NO2 measurement |
 | **CO2 Sensor** | SCD40 | CO2 monitoring |
-| **Power** | Dual 3.3V Li-ion + Buck Converter | Stable sensor operation |
+| **Power** | Dual 3.3V Li-ion + buck/LDO regulation | Sensor power supply |
 
-### Circuit Schematics
+### Circuit Schematics (KiCad)
 
 <div align="center">
 <table>
@@ -134,6 +118,10 @@ Pneumonia is a severe respiratory infection affecting millions worldwide. This c
 </div>
 
 ---
+
+## Repository Contents
+
+This repository holds the project's **documentation, diagrams, and hardware schematics**. Training/inference code and the dataset are not included (dataset was too large to check in; model files are also excluded — see `.gitignore`). For the full write-up and methodology, see the presentation below.
 
 ## Documentation
 
@@ -168,10 +156,12 @@ Vellore Institute of Technology (2021-2025)
 
 ## Future Work
 
-- [ ] Deploy on ESP32 with TensorFlow Lite
-- [ ] Develop mobile app
+- [ ] Deploy the trained CNN to the ESP32 (e.g. via TensorFlow Lite) for on-device inference
+- [ ] Integrate ML-based classification into the breath-sensor pipeline (currently threshold-based only)
+- [ ] Move from breadboard prototype to a wearable PCB form factor
+- [ ] Develop a companion mobile app
 - [ ] Clinical validation
-- [ ] Bacterial vs viral classification
+- [ ] Bacterial vs. viral pneumonia classification
 
 ---
 
